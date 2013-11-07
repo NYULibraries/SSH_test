@@ -1,4 +1,0 @@
-capistrano:
-  user: <%= ENV["USER"] %>
-  path: <%= ENV["DEPLOY_PATH"] %>
-  scm_username: <%= ENV["SCM_USERNAME"] %>

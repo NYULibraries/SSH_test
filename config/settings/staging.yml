@@ -1,3 +1,0 @@
-capistrano:
-  servers:
-    - <%= ENV["SERVER"] %>
