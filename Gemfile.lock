@@ -78,12 +78,14 @@ GEM
       thor (>= 0.14, < 2.0)
     jruby-openssl (0.9.4)
       bouncy-castle-java (>= 1.5.0147)
+    json (1.8.1)
     json (1.8.1-java)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25)
     multi_json (1.8.2)
+    mysql2 (0.3.13)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -148,12 +150,14 @@ GEM
 
 PLATFORMS
   java
+  ruby
 
 DEPENDENCIES
   activerecord-jdbcsqlite3-adapter
   coffee-rails (~> 3.2.1)
   jquery-rails
   jruby-openssl
+  mysql2 (~> 0.3.13)
   nyulibraries_deploy!
   rails (= 3.2.15)
   rails_config (~> 0.3.2)
