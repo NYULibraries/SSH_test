@@ -24,3 +24,9 @@ namespace :rails_config do
     set(:deploy_to)     {"#{fetch :app_path}#{fetch :application}"}
   end
 end
+
+namespace :deploy do
+  task :migrate do
+    logger.info "Do nothing in this railsless deploy."
+  end
+end
