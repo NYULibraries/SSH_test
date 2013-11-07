@@ -12,7 +12,7 @@ platforms :jruby do
 end
 
 platforms :ruby do
-  gem "mysql2", "~> 0.3.13"
+  gem 'sqlite3'
 end
 
 # Gems used only for assets and not required
