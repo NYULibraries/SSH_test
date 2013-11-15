@@ -31,6 +31,9 @@ set :branch, "master"
 
 namespace :deploy do
   task :migrate do
-    logger.info "Do nothing in this railsless deploy."
+    $stdout.puts "Do nothing in this railsless deploy."
+  end
+  task :restart do
+    $stdout.puts "Do nothing in this railsless deploy."
   end
 end
