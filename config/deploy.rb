@@ -22,7 +22,9 @@ set :branch, "master"
     set(:user,          ->  { fetch(:app_settings)[:user] } )
     set(:puma_ports,    ->  { fetch(:app_settings)[:puma_ports] } )
     set(:deploy_to,     ->  {"#{fetch :app_path}#{fetch :application}"} )
-    server fetch(:app_settings)[:servers], user: fetch(:user), roles: %w{web app}
+    fetch(:app_settings)[:servers].each |srvr| do
+      server srvr, user: fetch(:user), roles: %w{web app}
+    end
 #   end
 # end
 
