@@ -1,27 +1,21 @@
 GIT
   remote: git://github.com/NYULibraries/nyulibraries_deploy.git
-  revision: 45335963ed6aca58f40fa063c97f8796a8e21642
+  revision: f31452795eda089f45eb2be4dcb03e879b7dcb7e
   branch: development-capistrano
   specs:
     nyulibraries_deploy (3.2.0)
-      capistrano (~> 3.0.1)
       git (~> 1.2.5)
       mail (~> 2.5.4)
       newrelic_rpm (~> 3.6.0)
       rake (~> 10.1.0)
-      rvm-capistrano (~> 1.5.0)
+      sshkit (~> 1.1.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    capistrano (3.0.1)
-      i18n
-      rake (>= 10.0.0)
-      sshkit (>= 0.0.23)
     coderay (1.1.0)
     ffi (1.9.3-java)
     git (1.2.6)
-    i18n (0.6.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -42,8 +36,6 @@ GEM
       slop (~> 3.4)
       spoon (~> 0.0)
     rake (10.1.0)
-    rvm-capistrano (1.5.0)
-      capistrano (>= 2.15.4)
     slop (3.4.7)
     spoon (0.0.4)
       ffi
