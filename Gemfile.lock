@@ -10,12 +10,22 @@ GIT
       rake (~> 10.1.0)
       sshkit (~> 1.1.0)
 
+GIT
+  remote: git://github.com/capistrano/capistrano.git
+  revision: 5e1dba2a23d4fa2bf56ed0d401c2b1dd76ba766e
+  specs:
+    capistrano (3.1.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 0.0.23)
+
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.0)
     ffi (1.9.3-java)
     git (1.2.6)
+    i18n (0.6.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -56,6 +66,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capistrano!
   nyulibraries_deploy!
   pry
   thor
