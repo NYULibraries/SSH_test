@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/NYULibraries/nyulibraries_deploy.git
-  revision: f31452795eda089f45eb2be4dcb03e879b7dcb7e
+  revision: 66256a3f1252fb89b795a5de82fd04326cdab818
   branch: development-capistrano
   specs:
     nyulibraries_deploy (3.2.0)
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: git://github.com/capistrano/capistrano.git
-  revision: 5e1dba2a23d4fa2bf56ed0d401c2b1dd76ba766e
+  revision: 71b9f5812ad11439fcc83596df7f775f49cea030
   specs:
     capistrano (3.1.0)
       i18n
@@ -22,6 +22,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    capistrano-bundler (1.0.0)
+      capistrano (>= 3.0.0.pre)
     coderay (1.1.0)
     ffi (1.9.3-java)
     git (1.2.6)
@@ -67,6 +69,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano!
+  capistrano-bundler
   nyulibraries_deploy!
   pry
   thor

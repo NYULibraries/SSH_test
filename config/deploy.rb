@@ -1,13 +1,13 @@
-require 'nyulibraries/deploy/capistrano/default_attributes'
-require 'nyulibraries/deploy/capistrano/rails_config'
-require 'nyulibraries/deploy/capistrano/bundler'
-require 'nyulibraries/deploy/capistrano/rvm'
-
 set :application, 'SSH_test'
 set :repo_url, 'git@github.com:hab278/SSH_test.git'
 set :repository,  "git@github.com:hab278/SSH_test.git"
 set :keep_releases, 1
 set :branch, "master"
+set :recipient, "hab278@nyu.edu"
+# set :tagging_environments, ["staging", "production"]
+set :log_level, :debug
+
+# SSHKit.config.output_verbosity=
 
 # namespace :rails_config do
 #   task :set_variables do
@@ -24,16 +24,16 @@ set :branch, "master"
     set(:deploy_to,     ->  {"#{fetch :app_path}#{fetch :application}"} )
     
     fetch(:app_settings)[:servers].each do |srvr| 
-      server srvr, user: fetch(:user), roles: %w{web app}
+      server srvr, user: fetch(:user), roles: %w{all}
     end
 #   end
 # end
 
 namespace :deploy do
   task :migrate do
-    $stdout.puts "Do nothing in this railsless deploy."
+    info "Do nothing in this railsless deploy."
   end
   task :restart do
-    $stdout.puts "Do nothing in this railsless deploy."
+    info "Do nothing in this railsless deploy."
   end
 end
