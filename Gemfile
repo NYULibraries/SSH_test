@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'nyulibraries_deploy', :path => '../nyulibraries_deploy'#, :git => "git://github.com/NYULibraries/nyulibraries_deploy.git", :branch => 'development-capistrano'
+gem 'nyulibraries_deploy',  :git => "git://github.com/NYULibraries/nyulibraries_deploy.git", :branch => 'development-capistrano'
 gem 'pry'
 gem 'thor'
+gem 'ruby-debug'
 gem "capistrano", :git => "git://github.com/capistrano/capistrano.git"
 gem "sshkit", :git => "git@github.com:kirs/sshkit.git", :branch => "command-map"
 gem "capistrano-bundler", :git => "git://github.com/capistrano/bundler.git"

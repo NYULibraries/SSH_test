@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/NYULibraries/nyulibraries_deploy.git
+  revision: dcae93f556298a8f706454a544e63840ffbc69a4
+  branch: development-capistrano
+  specs:
+    nyulibraries_deploy (3.2.0)
+      git (~> 1.2.5)
+      mail (~> 2.5.4)
+      newrelic_rpm (~> 3.6.0)
+      rake (~> 10.1.0)
+
+GIT
   remote: git://github.com/capistrano/bundler.git
   revision: 8c40862ef53de8d7706682f452f6ba76502864ad
   specs:
@@ -32,22 +43,17 @@ GIT
       net-ssh
       term-ansicolor
 
-PATH
-  remote: ../nyulibraries_deploy
-  specs:
-    nyulibraries_deploy (3.2.0)
-      git (~> 1.2.5)
-      mail (~> 2.5.4)
-      newrelic_rpm (~> 3.6.0)
-      rake (~> 10.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.0)
+    columnize (0.3.6)
+    ffi (1.9.3)
     ffi (1.9.3-java)
     git (1.2.6)
     i18n (0.6.5)
+    linecache (0.46)
+      rbx-require-relative (> 0.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -68,6 +74,13 @@ GEM
       slop (~> 3.4)
       spoon (~> 0.0)
     rake (10.1.0)
+    rbx-require-relative (0.0.9)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
+    ruby-debug-base (0.10.4-java)
     slop (3.4.7)
     spoon (0.0.4)
       ffi
@@ -89,5 +102,6 @@ DEPENDENCIES
   capistrano-rvm!
   nyulibraries_deploy!
   pry
+  ruby-debug
   sshkit!
   thor
