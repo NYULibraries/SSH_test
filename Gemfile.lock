@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/NYULibraries/nyulibraries_deploy.git
+  revision: dcae93f556298a8f706454a544e63840ffbc69a4
+  branch: development-capistrano
+  specs:
+    nyulibraries_deploy (3.2.0)
+      git (~> 1.2.5)
+      mail (~> 2.5.4)
+      newrelic_rpm (~> 3.6.0)
+      rake (~> 10.1.0)
+
+GIT
   remote: git://github.com/capistrano/bundler.git
   revision: 8c40862ef53de8d7706682f452f6ba76502864ad
   specs:
@@ -31,15 +42,6 @@ GIT
       net-scp
       net-ssh
       term-ansicolor
-
-PATH
-  remote: ../nyulibraries_deploy
-  specs:
-    nyulibraries_deploy (3.2.0)
-      git (~> 1.2.5)
-      mail (~> 2.5.4)
-      newrelic_rpm (~> 3.6.0)
-      rake (~> 10.1.0)
 
 GEM
   remote: https://rubygems.org/
