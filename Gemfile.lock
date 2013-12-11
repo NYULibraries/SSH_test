@@ -11,14 +11,15 @@ GIT
 
 GIT
   remote: git://github.com/capistrano/bundler.git
-  revision: 8c40862ef53de8d7706682f452f6ba76502864ad
+  revision: f1b70e2f6ff565f377eee851a597ff89fe9d9c4d
   specs:
-    capistrano-bundler (1.0.0)
-      capistrano (>= 3.0.0.pre)
+    capistrano-bundler (1.1.1)
+      capistrano (~> 3.0)
+      sshkit (>= 1.2.0)
 
 GIT
   remote: git://github.com/capistrano/capistrano.git
-  revision: 90143466647c6da8657c4b139ba3333918f1277b
+  revision: 7b438780ccb7dd45d22d42694ecd76db11dd5b47
   specs:
     capistrano (3.1.0)
       i18n
@@ -27,19 +28,18 @@ GIT
 
 GIT
   remote: git://github.com/capistrano/rvm.git
-  revision: fe3263a2ae984110fbe89673ff7199c877faf8ab
-  branch: sshkit-prefixes
+  revision: abae9d9ddd7102c181448f83e0fe02376eb09479
   specs:
-    capistrano-rvm (0.0.3)
-      capistrano
+    capistrano-rvm (0.1.0)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2.0)
 
 GIT
   remote: git@github.com:kirs/sshkit.git
-  revision: d3fa36da2517718b7c0ce5eec92c30d4fba03fac
-  branch: command-map
+  revision: 993f4c1495117d61200502dd932b6761b5b8b9c4
   specs:
-    sshkit (1.0.0)
-      net-scp
+    sshkit (1.2.0)
+      net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
 
@@ -49,22 +49,18 @@ GEM
     coderay (1.1.0)
     ffi (1.9.3-java)
     git (1.2.6)
-    i18n (0.6.5)
+    i18n (0.6.9)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.2)
-    mime-types (1.25)
+    mime-types (1.25.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
     newrelic_rpm (3.6.9.171)
     polyglot (0.3.3)
-    pry (0.9.12.3)
-      coderay (~> 1.0)
-      method_source (~> 0.8)
-      slop (~> 3.4)
-    pry (0.9.12.3-java)
+    pry (0.9.12.4-java)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -83,7 +79,6 @@ GEM
 
 PLATFORMS
   java
-  ruby
 
 DEPENDENCIES
   capistrano!

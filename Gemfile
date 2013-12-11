@@ -4,6 +4,6 @@ gem 'nyulibraries_deploy', :git => "git://github.com/NYULibraries/nyulibraries_d
 gem 'pry'
 gem 'thor'
 gem "capistrano", :git => "git://github.com/capistrano/capistrano.git"
-gem "sshkit", :git => "git@github.com:kirs/sshkit.git", :branch => "command-map"
+gem "sshkit", :git => "git@github.com:kirs/sshkit.git"
 gem "capistrano-bundler", :git => "git://github.com/capistrano/bundler.git"
-gem "capistrano-rvm", :git => "git://github.com/capistrano/rvm.git", :branch => "sshkit-prefixes"
+gem "capistrano-rvm", :git => "git://github.com/capistrano/rvm.git"
