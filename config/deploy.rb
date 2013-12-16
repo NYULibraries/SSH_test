@@ -4,11 +4,10 @@ set :repository,  "git@github.com:hab278/SSH_test.git"
 set :keep_releases, 1
 set :branch, "master"
 set :recipient, "hab278@nyu.edu"
-# set :tagging_environments, ["staging", "production"]
+set :tagging_environments, ["staging", "production"]
 set :log_level, :debug
-set :rvm_path, "~/.rvm"
+set :rvm_custom_path, "~/.rvm"
 set :rvm_ruby_version , "1.9.3"
-# SSHKit.config.output_verbosity=
 
 # namespace :rails_config do
 #   task :set_variables do
@@ -38,18 +37,3 @@ namespace :deploy do
     info "Do nothing in this railsless deploy."
   end
 end
-
-namespace :rvm do
-  task :print do
-    puts(fetch(:scm_username))
-    puts(fetch(:app_path))
-    puts(fetch(:user))
-    puts(fetch(:puma_ports))
-    puts(fetch(:deploy_to))
-    require 'pry'; pry
-  end
-  after "rvm:check", "rvm:print"
-end
-
-
-

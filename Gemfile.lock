@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/NYULibraries/nyulibraries_deploy.git
-  revision: dcae93f556298a8f706454a544e63840ffbc69a4
+  revision: cf90f5462c67b2caaa44814fcf3d01b7c36a9bde
   branch: development-capistrano
   specs:
     nyulibraries_deploy (3.2.0)
@@ -35,8 +35,18 @@ GIT
       sshkit (~> 1.2.0)
 
 GIT
-  remote: git@github.com:kirs/sshkit.git
-  revision: 993f4c1495117d61200502dd932b6761b5b8b9c4
+  remote: git@github.com:NYULibraries/nyulibraries_assets.git
+  revision: 4fb0bf1515d08a236352c4038e0b574c68df1c83
+  tag: v1.2.0
+  specs:
+    nyulibraries_assets (1.2.0)
+      bootstrap-sass (>= 2.2.0, < 2.3.1.1)
+      compass (~> 0.12.2)
+      institutions (~> 0.1.1)
+
+GIT
+  remote: git@github.com:capistrano/sshkit.git
+  revision: 293332606452da770ebabd3abff640b946b197af
   specs:
     sshkit (1.2.0)
       net-scp (>= 1.1.2)
@@ -46,10 +56,28 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    bootstrap-sass (2.3.1.0)
+      sass (~> 3.2)
+    chunky_png (1.2.9)
     coderay (1.1.0)
-    ffi (1.9.3-java)
+    columnize (0.3.6)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    debugger (1.6.2)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
+    fssm (0.2.10)
     git (1.2.6)
     i18n (0.6.9)
+    institutions (0.1.3)
+      ipaddr_range_set (~> 0.10.0)
+      require_all (~> 1.3.1)
+    ipaddr_range_set (0.10.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -60,15 +88,14 @@ GEM
     net-ssh (2.7.0)
     newrelic_rpm (3.6.9.171)
     polyglot (0.3.3)
-    pry (0.9.12.4-java)
+    pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-      spoon (~> 0.0)
     rake (10.1.0)
+    require_all (1.3.2)
+    sass (3.2.12)
     slop (3.4.7)
-    spoon (0.0.4)
-      ffi
     term-ansicolor (1.2.2)
       tins (~> 0.8)
     thor (0.18.1)
@@ -78,12 +105,14 @@ GEM
       polyglot (>= 0.3.1)
 
 PLATFORMS
-  java
+  ruby
 
 DEPENDENCIES
   capistrano!
   capistrano-bundler!
   capistrano-rvm!
+  debugger
+  nyulibraries_assets!
   nyulibraries_deploy!
   pry
   sshkit!

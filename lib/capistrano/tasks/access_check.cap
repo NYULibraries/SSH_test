@@ -8,3 +8,9 @@ task :check_write_permissions do
     end
   end
 end
+
+
+task :check_rvm do |host|
+  require 'capistrano/nyulibraries_deploy'
+  after :check_rvm, "rvm:check"
+end
