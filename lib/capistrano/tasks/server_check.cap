@@ -5,12 +5,25 @@ task :check_write_permissions do
       info "#{fetch(:deploy_to)} is writable on #{host}"
     else
       error "#{fetch(:deploy_to)} is not writable on #{host}"
+      exit 1
     end
   end
 end
 
 
-task :check_rvm do |host|
+task :check_rvm do
   require 'capistrano/nyulibraries_deploy'
   after :check_rvm, "rvm:check"
+end
+
+task :check_app_running do
+  on roles(:all) do |host|
+    output = capture("ps -U #{fetch(:user)} u | grep #{fetch :check_app}")
+    if output.split(/\n/).size > 2
+      info "Looks like #{fetch :check_app}'s process is running."
+    else
+      error "Cannot find process like #{fetch :check_app}."
+      exit 1
+    end
+  end
 end
