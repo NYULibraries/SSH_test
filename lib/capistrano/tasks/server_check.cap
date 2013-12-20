@@ -18,12 +18,18 @@ end
 
 task :check_app_running do
   on roles(:all) do |host|
-    output = capture("ps -U #{fetch(:user)} u | grep #{fetch :check_app}")
+    output = capture("ps -U #{fetch(:user)} u | grep #{fetch :check_app}_repos")
     if output.split(/\n/).size > 2
       info "Looks like #{fetch :check_app}'s process is running."
     else
       error "Cannot find process like #{fetch :check_app}."
       exit 1
     end
+  end
+end
+
+task :app_shutdown do
+  on roles(:all) do |host|
+    execute "#{fetch :app_shutdown}"
   end
 end

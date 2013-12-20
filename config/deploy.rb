@@ -9,6 +9,7 @@ set :log_level, :debug
 set :rvm_custom_path, "~/.rvm"
 set :rvm_ruby_version , "1.9.3"
 set :check_app, ENV["CHECK_APP"]
+set :app_shutdown, ENV["SHUTDOWN_APP"]
 
 # namespace :rails_config do
 #   task :set_variables do
