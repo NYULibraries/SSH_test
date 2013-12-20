@@ -8,34 +8,21 @@ set :tagging_environments, ["staging", "production"]
 set :log_level, :debug
 set :rvm_custom_path, "~/.rvm"
 set :rvm_ruby_version , "1.9.3"
+
 set :check_app, ENV["CHECK_APP"]
 set :app_shutdown, ENV["SHUTDOWN_APP"]
+set :app_settings, {
+  :user => ENV["USER"],
+  :path => ENV["DEPLOY_PATH"],
+  :scm_username => ENV["SCM_USERNAME"],
+  :servers => [ENV["SERVER"]]
+}
+set(:scm_username,  ->  { fetch(:app_settings)[:scm_username] } )
+set(:app_path,      ->  { fetch(:app_settings)[:path] } )
+set(:user,          ->  { fetch(:app_settings)[:user] } )
+set(:puma_ports,    ->  { fetch(:app_settings)[:puma_ports] } )
+set(:deploy_to,     ->  {"#{fetch :app_path}#{fetch :application}"} )
 
-# namespace :rails_config do
-#   task :set_variables do
-    set :app_settings, {
-      :user => ENV["USER"],
-      :path => ENV["DEPLOY_PATH"],
-      :scm_username => ENV["SCM_USERNAME"],
-      :servers => [ENV["SERVER"]]
-    }
-    set(:scm_username,  ->  { fetch(:app_settings)[:scm_username] } )
-    set(:app_path,      ->  { fetch(:app_settings)[:path] } )
-    set(:user,          ->  { fetch(:app_settings)[:user] } )
-    set(:puma_ports,    ->  { fetch(:app_settings)[:puma_ports] } )
-    set(:deploy_to,     ->  {"#{fetch :app_path}#{fetch :application}"} )
-    
-    fetch(:app_settings)[:servers].each do |srvr| 
-      server srvr, user: fetch(:user), roles: %w{all}
-    end
-#   end
-# end
-
-namespace :deploy do
-  task :migrate do
-    info "Do nothing in this railsless deploy."
-  end
-  task :restart do
-    info "Do nothing in this railsless deploy."
-  end
+fetch(:app_settings)[:servers].each do |srvr| 
+  server srvr, user: fetch(:user), roles: %w{all}
 end

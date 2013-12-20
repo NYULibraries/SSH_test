@@ -10,7 +10,6 @@ task :check_write_permissions do
   end
 end
 
-
 task :check_rvm do
   require 'capistrano/nyulibraries_deploy'
   after :check_rvm, "rvm:check"
@@ -31,5 +30,15 @@ end
 task :app_shutdown do
   on roles(:all) do |host|
     execute "#{fetch :app_shutdown}"
+  end
+end
+
+
+namespace :deploy do
+  task :migrate do
+    info "Do nothing in this railsless deploy."
+  end
+  task :restart do
+    info "Do nothing in this railsless deploy."
   end
 end
