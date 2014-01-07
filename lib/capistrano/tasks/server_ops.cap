@@ -1,6 +1,13 @@
 task :app_shutdown do
   on roles(:all) do |host|
-    execute "#{fetch :app_shutdown}"
+    execute "#{fetch :app_shutdown_command}"
+    exit 1
+  end
+end
+
+task :app_startup do
+  on roles(:all) do |host|
+    execute "#{fetch :app_startup_command}"
   end
 end
 

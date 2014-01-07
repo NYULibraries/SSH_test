@@ -10,7 +10,8 @@ set :rvm_custom_path, "~/.rvm"
 set :rvm_ruby_version , "1.9.3"
 
 set :check_app, ENV["CHECK_APP"]
-set :app_shutdown, ENV["SHUTDOWN_APP"]
+set :app_shutdown_command, ENV["SHUTDOWN_APP_COMMAND"]
+set :app_startup_command, ENV["STARTUP_APP_COMMAND"]
 set :app_settings, {
   :user => ENV["USER"],
   :path => ENV["DEPLOY_PATH"],
