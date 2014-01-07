@@ -19,20 +19,20 @@ GIT
 
 GIT
   remote: git://github.com/capistrano/capistrano.git
-  revision: 7b438780ccb7dd45d22d42694ecd76db11dd5b47
+  revision: 82dfc785179fd7f8fd233da8091e923160ca3d39
   specs:
     capistrano (3.1.0)
       i18n
       rake (>= 10.0.0)
-      sshkit (>= 0.0.23)
+      sshkit (~> 1.3)
 
 GIT
   remote: git://github.com/capistrano/rvm.git
-  revision: abae9d9ddd7102c181448f83e0fe02376eb09479
+  revision: 19e8d15ae3d705499c610370f159d523bbedbd94
   specs:
     capistrano-rvm (0.1.0)
       capistrano (~> 3.0)
-      sshkit (~> 1.2.0)
+      sshkit (~> 1.2)
 
 GIT
   remote: git@github.com:NYULibraries/nyulibraries_assets.git
@@ -46,9 +46,9 @@ GIT
 
 GIT
   remote: git@github.com:capistrano/sshkit.git
-  revision: 293332606452da770ebabd3abff640b946b197af
+  revision: 130211e882a994cffdf9e7467f0c29005f6a7249
   specs:
-    sshkit (1.2.0)
+    sshkit (1.3.0)
       net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
@@ -75,6 +75,7 @@ GEM
       ipaddr_range_set (~> 0.10.0)
       require_all (~> 1.3.1)
     ipaddr_range_set (0.10.0)
+    json (1.8.1)
     json (1.8.1-java)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -96,9 +97,9 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
       spoon (~> 0.0)
-    rake (10.1.0)
+    rake (10.1.1)
     require_all (1.3.2)
-    sass (3.2.12)
+    sass (3.2.13)
     slop (3.4.7)
     spoon (0.0.4)
       ffi

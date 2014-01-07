@@ -30,10 +30,14 @@ end
 task :app_sanity_check do
   require 'httparty'
   if HTTParty.get(fetch(:app_url)).code == 200 
-    puts "#{fetch(:app_url)} is still alive!"
-    exit( 0 )
+    output_info "#{fetch(:app_url)} is still alive!"
+    exit(0)
   else
-    puts "#{fetch(:app_url)} is dead..."
+    output_info "#{fetch(:app_url)} is dead..."
     exit(1)
   end
+end
+
+def output_info msg
+  SSHKit::Formatter.const_get(:Pretty).new($stdout) << SSHKit::LogMessage.new(Logger::INFO, msg)
 end
