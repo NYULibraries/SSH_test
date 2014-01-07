@@ -26,3 +26,14 @@ task :check_app_running do
     end
   end
 end
+
+task :app_sanity_check do
+  require 'httparty'
+  if HTTParty.get(fetch(:app_url)).code == 200 
+    info "#{fetch(:app_url)} is still alive!"
+    exit( 0 )
+  else
+    info "#{fetch(:app_url)} is dead..."
+    exit(1)
+  end
+end
