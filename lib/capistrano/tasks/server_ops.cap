@@ -1,13 +1,28 @@
-task :app_shutdown do
-  on roles(:all) do |host|
-    execute "#{fetch :app_shutdown_command}"
-    exit 1
+namespace :apache do
+  task :toggle do
+    on roles(:all) do |host|
+      status = capture(:apache, :status, :raise_on_non_zero_exit => false)
+      if status.include? ("is running")
+        Capistrano::DSL.invoke("apache:shutdown")
+      else
+        Capistrano::DSL.invoke("apache:startup")
+      end
+    end
   end
-end
-
-task :app_startup do
-  on roles(:all) do |host|
-    execute "#{fetch :app_startup_command}"
+  
+  task :startup do
+    on roles(:all) do |host|
+      execute :apache, :start
+      info "Apache was started!"
+    end
+  end
+  
+  task :shutdown do
+    on roles(:all) do |host|
+      execute :apache, :stop
+      error "Apache was SHUTDOWN"
+      exit 3
+    end
   end
 end
 

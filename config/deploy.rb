@@ -11,8 +11,6 @@ set :rvm_ruby_version , "1.9.3"
 
 set :check_app, ENV["CHECK_APP"]
 set :app_url, ENV["APP_URL"]
-set :app_shutdown_command, ENV["SHUTDOWN_APP_COMMAND"]
-set :app_startup_command, ENV["STARTUP_APP_COMMAND"]
 set :app_settings, {
   :user => ENV["USER"],
   :path => ENV["DEPLOY_PATH"],
@@ -28,3 +26,6 @@ set(:deploy_to,     ->  {"#{fetch :app_path}#{fetch :application}"} )
 fetch(:app_settings)[:servers].each do |srvr| 
   server srvr, user: fetch(:user), roles: %w{all}
 end
+
+
+SSHKit.config.command_map[:apache] = ENV["APACHE"]
