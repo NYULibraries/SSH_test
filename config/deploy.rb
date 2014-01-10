@@ -17,6 +17,7 @@ set :app_settings, {
   :scm_username => ENV["SCM_USERNAME"],
   :servers => [ENV["SERVER"]]
 }
+
 set(:scm_username,  ->  { fetch(:app_settings)[:scm_username] } )
 set(:app_path,      ->  { fetch(:app_settings)[:path] } )
 set(:user,          ->  { fetch(:app_settings)[:user] } )
