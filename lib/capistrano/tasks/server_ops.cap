@@ -1,11 +1,12 @@
 namespace :apache do
-  task :toggle do
+  task :status do
     on roles(:all) do |host|
       status = capture(:apache, :status, :raise_on_non_zero_exit => false)
       if status.include? ("is running")
-        Capistrano::DSL.invoke("apache:shutdown")
+        info "Apache is running!"
       else
-        Capistrano::DSL.invoke("apache:startup")
+        info "Apache is not running."
+        exit 3
       end
     end
   end
