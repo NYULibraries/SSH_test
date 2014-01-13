@@ -48,9 +48,8 @@ namespace :check do
           exit(1)
       end
     end
-  end
-  
-  def output type, msg
-    SSHKit::Formatter.const_get(:Pretty).new($stdout) << SSHKit::LogMessage.new(Logger::const_get(Logger::constants.include?(type.upcase.to_sym) ? type.upcase.to_sym : :INFO), msg)
+    def output type, msg
+      SSHKit::Formatter.const_get(:Pretty).new($stdout) << SSHKit::LogMessage.new(Logger::const_get(Logger::constants.include?(type.upcase.to_sym) ? type.upcase.to_sym : :INFO), msg)
+    end
   end
 end
