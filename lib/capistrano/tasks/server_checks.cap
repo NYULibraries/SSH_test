@@ -43,8 +43,10 @@ namespace :check do
           exit(1)
         end
       rescue Exception => e
+        if !e.to_s.eql? "exit"
           output :error, "#{e} -> #{fetch(:app_url)} is dead..."
           exit(1)
+        end
       end
     end
     def output type, msg
