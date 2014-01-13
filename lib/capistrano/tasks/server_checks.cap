@@ -37,7 +37,6 @@ namespace :check do
       begin
         if HTTParty.get(fetch(:app_url), {:timeout => 10}).code == 200 
           output :info, "#{fetch(:app_url)} is still alive!"
-          output :info, HTTParty.get(fetch(:app_url))
           exit(0)
         else
           output :info, "#{fetch(:app_url)} is experiencing sketchy behavior..."
