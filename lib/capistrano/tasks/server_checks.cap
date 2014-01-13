@@ -14,7 +14,7 @@ namespace :check do
   desc "Check that we have RVM installed"
   task :rvm do
     require 'capistrano/rvm'
-    after :check_rvm, "rvm:check"
+    after "check:rvm", "rvm:check"
   end
   
   desc "Check that the app process is running"
@@ -33,16 +33,22 @@ namespace :check do
   desc "Check that the app is running"
   task :app_sanity do
     require 'httparty'
-    if HTTParty.get(fetch(:app_url)).code == 200 
-      output_info "#{fetch(:app_url)} is still alive!"
-      exit(0)
-    else
-      output_info "#{fetch(:app_url)} is dead..."
-      exit(1)
+    begin
+      if HTTParty.get(fetch(:app_url), {:timeout => 10}).code == 200 
+        output_info "#{fetch(:app_url)} is still alive!"
+        output_info HTTParty.get(fetch(:app_url))
+        exit(0)
+      else
+        output :info, "#{fetch(:app_url)} is experiencing sketchy behavior..."
+        exit(1)
+      end
+    rescue Exception => e
+        output :error, "#{e} -> #{fetch(:app_url)} is dead..."
+        exit(1)
     end
   end
   
-  def output_info msg
-    SSHKit::Formatter.const_get(:Pretty).new($stdout) << SSHKit::LogMessage.new(Logger::INFO, msg)
+  def output type, msg
+    SSHKit::Formatter.const_get(:Pretty).new($stdout) << SSHKit::LogMessage.new(Logger::const_get(Logger::constants.include?(type.upcase.to_sym) ? type.upcase.to_sym : :INFO), msg)
   end
 end
