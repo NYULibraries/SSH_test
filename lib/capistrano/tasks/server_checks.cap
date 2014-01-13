@@ -17,34 +17,36 @@ namespace :check do
     after "check:rvm", "rvm:check"
   end
   
-  desc "Check that the app process is running"
-  task :app_running do
-    on roles(:all) do |host|
-      output = capture("ps -U #{fetch(:user)} u | grep #{fetch :check_app}_repos")
-      if output.split(/\n/).size > 2
-        info "Looks like #{fetch :check_app}'s process is running."
-      else
-        error "Cannot find process like #{fetch :check_app}."
-        exit 1
+  namespace :app do
+    desc "Check that the app process is running"
+    task :running do
+      on roles(:all) do |host|
+        output = capture("ps -U #{fetch(:user)} u | grep #{fetch :check_app}_repos")
+        if output.split(/\n/).size > 2
+          info "Looks like #{fetch :check_app}'s process is running."
+        else
+          error "Cannot find process like #{fetch :check_app}."
+          exit 1
+        end
       end
     end
-  end
-  
-  desc "Check that the app is running"
-  task :app_sanity do
-    require 'httparty'
-    begin
-      if HTTParty.get(fetch(:app_url), {:timeout => 10}).code == 200 
-        output_info "#{fetch(:app_url)} is still alive!"
-        output_info HTTParty.get(fetch(:app_url))
-        exit(0)
-      else
-        output :info, "#{fetch(:app_url)} is experiencing sketchy behavior..."
-        exit(1)
+    
+    desc "Check that the app is running"
+    task :sanity do
+      require 'httparty'
+      begin
+        if HTTParty.get(fetch(:app_url), {:timeout => 10}).code == 200 
+          output_info "#{fetch(:app_url)} is still alive!"
+          output_info HTTParty.get(fetch(:app_url))
+          exit(0)
+        else
+          output :info, "#{fetch(:app_url)} is experiencing sketchy behavior..."
+          exit(1)
+        end
+      rescue Exception => e
+          output :error, "#{e} -> #{fetch(:app_url)} is dead..."
+          exit(1)
       end
-    rescue Exception => e
-        output :error, "#{e} -> #{fetch(:app_url)} is dead..."
-        exit(1)
     end
   end
   
