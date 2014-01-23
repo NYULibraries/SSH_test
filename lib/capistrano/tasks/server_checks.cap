@@ -21,7 +21,8 @@ namespace :check do
     desc "Check that the app process is running"
     task :running do
       on roles(:all) do |host|
-        output = capture("ps -U #{fetch(:user)} u | grep #{fetch :check_app}_repos")
+        app_name = "#{fetch :check_app}" + (fetch(:legacy, false) ? "" : "_repos")
+        output = capture("ps -U #{fetch(:user)} u | grep #{app_name}")
         if output.split(/\n/).size > 2
           info "Looks like #{fetch :check_app}'s process is running."
         else
