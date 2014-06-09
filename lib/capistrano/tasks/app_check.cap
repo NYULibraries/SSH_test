@@ -1,0 +1,84 @@
+def servers
+  require 'figs'
+  figsfile = YAML::load(File.open("Figsfile"))
+  YAML::load(File.open(Figs::GitHandler.location(figsfile.repo, figsfile.locations).first))
+end
+
+def dead_apps
+  @dead_apps ||= []
+end
+
+def running_apps
+  @running_apps ||= []
+end
+
+def list_dead_apps
+  output = "Looks like the following apps aren't running:\n"
+  dead_apps.each do |app|
+    output += "\t#{app.name}\n"
+  end
+  output
+end
+
+def list_running_apps
+  output = "The following apps are running:\n"
+  running_apps.each do |app|
+    output += "\t#{app.name}\n"
+  end
+  output
+end
+
+
+def sanity url
+  require 'httparty'
+  if HTTParty.get(url, {:timeout => 10}).code == 200
+    output = "#{url} is returning a 200"
+  else
+    output = "#{url} is experiencing sketchy behavior..."
+  end
+  output
+rescue Exception => e
+  if !e.to_s.eql? "exit"
+    output = "#{e} -> #{url} is dead..."
+  end
+  output
+end
+
+def output type, msg
+  SSHKit::Formatter.const_get(:Pretty).new($stdout) << SSHKit::LogMessage.new(Logger::const_get(Logger::constants.include?(type.upcase.to_sym) ? type.upcase.to_sym : :INFO), msg)
+end
+
+def list_apps_sanity
+  running_apps.each do |app|
+    if app.url?
+      info sanity(app.url)
+    end
+  end
+end
+
+namespace :check do
+  task :apps do
+    SSHKit::Backend::Netssh.pool.idle_timeout = 0
+    servers.each do |srvr|
+      s = Hashie::Mash.new(srvr)
+      role s.name.to_sym, s.host
+      server s.host, user: s.user, roles: [s.name.to_sym]
+      # require 'pry';
+      # binding.pry
+      on roles(s.name.to_sym) do |host|
+        output = capture("ps -U #{s.user} u")
+        s.apps.each do |app|
+          if output.include?(app.process_name)
+            running_apps << app
+          else
+            dead_apps << app
+          end
+        end
+        info "On #{s.name}"
+        info list_running_apps unless running_apps.empty?
+        list_apps_sanity unless running_apps.empty?
+        error list_dead_apps unless dead_apps.empty?
+      end
+    end
+  end
+end
